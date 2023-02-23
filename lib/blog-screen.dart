@@ -16,13 +16,9 @@ class BlogScreen extends StatelessWidget {
         title: const Text("Blogs"),
       ),
       body: Container(
-        margin: const EdgeInsets.only(left: 10.00, right: 10.00),
+        margin: const EdgeInsets.all(10.00),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [Text("This is our blogs")],
-            ),
             Consumer<BlogProvider>(
               builder: (BuildContext context, value, child) {
                 print("this is length " + logic.blogs.length.toString());
@@ -33,6 +29,11 @@ class BlogScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
+                            Text(
+                              logic.blogs[index]["title"]["rendered"],
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20.00),
+                            ),
                             Html(
                                 data: logic.blogs[index]["content"]
                                     ["rendered"]),
@@ -51,6 +52,7 @@ class BlogScreen extends StatelessWidget {
                 }
               },
             ),
+            TextButton(onPressed: () => '', child: const Text("Next"))
           ],
         ),
       ),
